@@ -64,6 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Observable(Stream.fromIterable(
             ['Aditya', 'Akash', 'Pranjul', 'Anshul', 'Akshay']))
         .interval(Duration(seconds: 2))
+        .map((String itemFromStream) =>
+            itemFromStream = itemFromStream.toUpperCase())
         .listen((value) {
       print(value);
     });
