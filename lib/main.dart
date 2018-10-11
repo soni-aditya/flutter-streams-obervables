@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 void main() => runApp(new MyApp());
 
@@ -56,8 +59,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  someBasicFunction() {
+    //Creating new observable
+    Observable(Stream.fromIterable(
+            ['Aditya', 'Akash', 'Pranjul', 'Anshul', 'Akshay']))
+        .interval(Duration(seconds: 2))
+        .listen((value) {
+      print(value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    someBasicFunction();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
