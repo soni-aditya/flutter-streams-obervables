@@ -66,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .interval(Duration(seconds: 2))
         .map((String itemFromStream) =>
             itemFromStream = itemFromStream.toUpperCase())
+        .expand((String item) => [item, item.substring(2)])
         .listen((value) {
       print(value);
     });
