@@ -68,11 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .interval(Duration(seconds: 2));
     //Whenever a subscriber subscribes to this particular behaviour subject
     //he will always get the latest value in the subscribed subject.
-    final behaviourSubject = BehaviorSubject<String>();
-    //now the value becomes 'Aditya'
-    behaviourSubject.add('Aditya');
-    //We are changing the value to 'Soni', So now the latest value becomes soni
-    behaviourSubject.add('Soni');
+    final behaviourSubject = BehaviorSubject<String>(seedValue: 'Welcome You!');
     behaviourSubject.stream.listen((value) {
       print(value);
     });
