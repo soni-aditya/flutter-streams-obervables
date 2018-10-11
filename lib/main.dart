@@ -66,10 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
         .interval(Duration(seconds: 2));
     var observable2 = Observable(Stream.fromIterable([1, 2, 3, 4, 5, 6]))
         .interval(Duration(seconds: 2));
-    //Whenever a subscriber subscribes to this particular behaviour subject
-    //he will always get the latest value in the subscribed subject.
-    final behaviourSubject = BehaviorSubject<String>(seedValue: 'Welcome You!');
-    behaviourSubject.stream.listen((value) {
+    //Using replay Subject (Just opposite of behaviour subejct)
+    //ie. it displays all the existing values in the streams
+    var replaySubejct = ReplaySubject<String>();
+    replaySubejct.add('Aditya');
+    replaySubejct.add('Soni');
+    replaySubejct.stream.listen((value) {
       print(value);
     });
   }
