@@ -66,9 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
         .interval(Duration(seconds: 2));
     var observable2 = Observable(Stream.fromIterable([1, 2, 3, 4, 5, 6]))
         .interval(Duration(seconds: 2));
-    //Listening to both observables, one at a time using single listener
-    //First observable1 gets listened and then observable2 gets listened by the listener.
-    Observable.concat([observable1, observable2]).listen((value) {
+    //Whenever a subscriber subscribes to this particular behaviour subject
+    //he will always get the latest value in the subscribed subject.
+    final behaviourSubject = BehaviorSubject<String>();
+    //now the value becomes 'Aditya'
+    behaviourSubject.add('Aditya');
+    //We are changing the value to 'Soni', So now the latest value becomes soni
+    behaviourSubject.add('Soni');
+    behaviourSubject.stream.listen((value) {
       print(value);
     });
   }
