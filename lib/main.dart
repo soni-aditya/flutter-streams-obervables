@@ -61,13 +61,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   someBasicFunction() {
     //Creating new observable
-    Observable(Stream.fromIterable(
+    var observable1 = Observable(Stream.fromIterable(
             ['Aditya', 'Akash', 'Pranjul', 'Anshul', 'Akshay']))
-        .interval(Duration(seconds: 2))
-        .map((String itemFromStream) =>
-            itemFromStream = itemFromStream.toUpperCase())
-        .expand((String item) => [item, item.substring(2)])
-        .listen((value) {
+        .interval(Duration(seconds: 2));
+    var observable2 = Observable(Stream.fromIterable([1, 2, 3, 4, 5, 6]))
+        .interval(Duration(seconds: 2));
+    //Listening to both observables, one at a time using single listener
+    //First observable1 gets listened and then observable2 gets listened by the listener.
+    Observable.concat([observable1, observable2]).listen((value) {
       print(value);
     });
   }
